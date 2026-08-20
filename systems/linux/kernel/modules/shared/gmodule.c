@@ -28,6 +28,10 @@
 #include <linux/init.h>
 #include <linux/seq_file.h>
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,8,0)
+#define HAVE_UNLOCKED_IOCTL 1
+#endif
+
 /* Module Vector Table */
 static gmodule_t* _gmodule = NULL;
 
@@ -143,6 +147,15 @@ static int _gmodule_proc_release(struct inode * inode, struct file * file) {
     return single_release(inode, file);
 }
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,6,0)
+struct proc_ops _gmodule_proc_fops = {
+    proc_open:       _gmodule_proc_open,
+    proc_read:       seq_read,
+    proc_lseek:      seq_lseek,
+    proc_write:      _gmodule_proc_write,
+    proc_release:    _gmodule_proc_release,
+};
+#else
 struct file_operations _gmodule_proc_fops = {
     owner:      THIS_MODULE,
     open:       _gmodule_proc_open,
@@ -151,6 +164,7 @@ struct file_operations _gmodule_proc_fops = {
     write:      _gmodule_proc_write,
     release:    _gmodule_proc_release,
 };
+#endif
 #else
 int
 gmodule_vpprintf(char** page_ptr, const char* fmt, va_list args)

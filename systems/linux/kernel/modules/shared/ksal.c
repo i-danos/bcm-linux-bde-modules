@@ -35,8 +35,11 @@
 #endif
 #include <linux/time.h>
 
-#ifdef MAX_USER_RT_PRIO
-/* Assume 2.6 scheduler */
+#if defined(MAX_USER_RT_PRIO) || LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,0)
+/* Assume 2.6+ scheduler. MAX_USER_RT_PRIO itself was later removed from
+ * modern kernel headers, but the LINUX_VERSION_CODE check alone is
+ * sufficient since the 2.4 branch below is dead code on any kernel this
+ * driver can plausibly build against now. */
 #define SAL_YIELD(task) \
     yield()
 #else
@@ -180,9 +183,9 @@ sal_sem_give(sal_sem_t b)
 uint32
 sal_time_usecs(void)
 {
-    struct timeval ltv;
-    do_gettimeofday(&ltv);
-    return (ltv.tv_sec * SECOND_USEC + ltv.tv_usec);
+    struct timespec64 ltv;
+    ktime_get_real_ts64(&ltv);
+    return (ltv.tv_sec * SECOND_USEC + ltv.tv_nsec / 1000);
 }
     
 void

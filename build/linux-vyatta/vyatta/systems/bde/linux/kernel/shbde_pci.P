@@ -1,0 +1,9 @@
+${SDK}/build/linux-vyatta/vyatta/systems/bde/linux/kernel/shbde_pci.o: \
+ ${SDK}/systems/bde/shared/shbde_pci.c \
+ /lib/modules/6.12.0-trunk-vyatta-amd64/build/include/generated/autoconf.h \
+ ${SDK}/systems/bde/shared/include/shbde_pci.h \
+ ${SDK}/systems/bde/shared/include/shbde.h
+ ${SDK}/systems/bde/shared/shbde_pci.c :
+ /lib/modules/6.12.0-trunk-vyatta-amd64/build/include/generated/autoconf.h :
+ ${SDK}/systems/bde/shared/include/shbde_pci.h :
+ ${SDK}/systems/bde/shared/include/shbde.h :

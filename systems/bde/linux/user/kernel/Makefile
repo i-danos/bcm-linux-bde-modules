@@ -44,6 +44,7 @@ build: kernel_libs $(MODULE)
 endif
 
 KBUILD_EXTRA_SYMBOLS := ${BLDDIR}/../../kernel/kernel_module/Module.symvers
+export KBUILD_EXTRA_SYMBOLS
 
 $(MODULE): $(BLDDIR)/.tree $(BOBJS) $(LIBS)
 	$(LD) $(MODULE_LDFLAGS) -r -d $(BOBJS) $(LIBS) -o $@

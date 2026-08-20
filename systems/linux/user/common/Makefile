@@ -159,18 +159,26 @@ ifdef BUILD_KNET_CB
 endif
 endif
 
-$(KERNEL_BDE): $(KERN_BLDROOT)/linux-kernel-bde.$(KOBJ)
+# kernel_modules produces these .ko files as a side effect of its recursive
+# submakes -- there is no real Make rule for $(KERN_BLDROOT)/*.ko, so it must
+# not be listed as a normal (explicit) prerequisite: under parallel make
+# (-j), Make resolves explicit prerequisites independently and errors with
+# "No rule to make target" if the file doesn't exist yet, even if an
+# order-only prerequisite would have built it first. Depending only on
+# kernel_modules (order-only) and referencing the path directly in the
+# recipe avoids that independent resolution.
+$(KERNEL_BDE): | kernel_modules
 	mkdir -p $(@D)
-	$(OBJCOPY) --strip-debug $< $@
+	$(OBJCOPY) --strip-debug $(KERN_BLDROOT)/linux-kernel-bde.$(KOBJ) $@
 
-$(USER_BDE): $(KERN_BLDROOT)/linux-user-bde.$(KOBJ)
-	$(OBJCOPY) --strip-debug $< $@
+$(USER_BDE): | kernel_modules
+	$(OBJCOPY) --strip-debug $(KERN_BLDROOT)/linux-user-bde.$(KOBJ) $@
 
-$(BCM_KNET): $(KERN_BLDROOT)/linux-bcm-knet.$(KOBJ)
-	$(OBJCOPY) --strip-debug $< $@
+$(BCM_KNET): | kernel_modules
+	$(OBJCOPY) --strip-debug $(KERN_BLDROOT)/linux-bcm-knet.$(KOBJ) $@
 
-$(KNET_CB): $(KERN_BLDROOT)/linux-knet-cb.$(KOBJ)
-	$(OBJCOPY) --strip-debug $< $@
+$(KNET_CB): | kernel_modules
+	$(OBJCOPY) --strip-debug $(KERN_BLDROOT)/linux-knet-cb.$(KOBJ) $@
 
 ifeq ($(NO_LOCAL_TARGETS),)
 $(foreach targ,$(LOCAL_TARGETS),$(eval $(call LOCAL_TARGET_DEF,$(targ))))
