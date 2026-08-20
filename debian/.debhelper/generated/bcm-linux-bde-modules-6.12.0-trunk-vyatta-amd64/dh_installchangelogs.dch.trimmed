@@ -1,0 +1,56 @@
+bcm-linux-bde-modules (6.5.20-1vyatta3) unstable; urgency=medium
+
+  * Detect HAVE_UNLOCKED_IOCTL using version (Bugfix: VRVDR-55062)
+  * Use ioremap instead of ioremap_noncache (Bugfix: VRVDR-55062)
+  * Remove dma_cache_sync (Bugfix: VRVDR-55062)
+  * Convert _gmodule_proc_fops to a struct proc_ps (Bugfix: VRVDR-55062)
+  * Export KBUILD_EXTRA_SYMBOLS when building external modules
+    (Bugfix: VRVDR-55062)
+
+ -- Charles (Chas) Williams <ciwillia@vyatta.att-mail.com>  Wed, 14 Jul 2021 15:02:31 -0400
+
+bcm-linux-bde-modules (6.5.20-1vyatta2) unstable; urgency=medium
+
+  [ James Wheatley ]
+  * Add noobs build profile (Closes: VRVDR-53810)
+
+ -- Charles (Chas) Williams <ciwillia@vyatta.att-mail.com>  Mon, 17 May 2021 10:35:01 -0400
+
+bcm-linux-bde-modules (6.5.20-1vyatta1) unstable; urgency=medium
+
+  * Import upstream version 6.5.18
+  * Import upstream version 6.5.19
+  * Import upstream version 6.5.20
+  * Refresh patches
+
+ -- Robert Shearman <robert.shearman@att.com>  Tue, 11 Aug 2020 09:33:43 +0100
+
+bcm-linux-bde-modules (6.5.17-1vyatta2) unstable; urgency=medium
+
+  * kernel: updates for later kernels (Bugfix: VRVDR-50692)
+
+ -- Charles (Chas) Williams <ciwillia@vyatta.att-mail.com>  Fri, 15 May 2020 09:12:18 -0400
+
+bcm-linux-bde-modules (6.5.17-1vyatta1) unstable; urgency=medium
+
+  [ Robert Shearman ]
+  * Import upstream version 6.5.17
+  * Refresh patches
+  * Turn off pristine-tar
+  * Double DMA pool size for DNX
+
+  [ Charles (Chas) Williams ]
+
+ -- Charles (Chas) Williams <ciwillia@vyatta.att-mail.com>  Fri, 29 Nov 2019 09:12:55 -0500
+
+bcm-linux-bde-modules (6.5.16-0vyatta4) unstable; urgency=medium
+
+  * DANOS Import master
+
+ -- Robert Shearman <robert.shearman@att.com>  Thu, 07 Nov 2019 10:35:06 +0000
+
+bcm-linux-bde-modules (6.5.16-0vyatta2.1) unstable; urgency=medium
+
+  * DANOS Import
+
+ -- Robert Shearman <robert.shearman@att.com>  Thu, 31 Oct 2019 17:52:45 +0000

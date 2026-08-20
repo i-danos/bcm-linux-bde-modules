@@ -1,7 +1,6 @@
 # SDK patches
 
 # Vyatta build specific patches
-0001-Add-Vyatta-platform.patch
 0002-Disable-KNET.patch
 add-dpp-dnx-support.patch
 fix-mem-alloc.patch

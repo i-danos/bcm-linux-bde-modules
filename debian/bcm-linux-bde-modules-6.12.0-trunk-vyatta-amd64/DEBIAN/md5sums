@@ -1,0 +1,6 @@
+3ef6cbebdc81b6af2646a5a0bc8de220  lib/modules/6.12.0-trunk-vyatta-amd64/kernel/drivers/net/linux-kernel-bde.ko
+92c6dfabec7df56162b936280cd82ce7  lib/modules/6.12.0-trunk-vyatta-amd64/kernel/drivers/net/linux-user-bde.ko
+0ba15b01ea14ec9b1e514b5d12070f2b  lib/udev/rules.d/10-bcm-module.rules
+c4492705235d3ccab736e2f7cdd5c92f  usr/bin/bcm-devnode
+656a4eb8393d193ab05886cab13ae824  usr/share/doc/bcm-linux-bde-modules-6.12.0-trunk-vyatta-amd64/changelog.Debian.gz
+1872aceb0c2a28a38c1a7f2d3cea3a46  usr/share/doc/bcm-linux-bde-modules-6.12.0-trunk-vyatta-amd64/copyright
